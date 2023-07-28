@@ -1,0 +1,33 @@
+plugins {
+    id("java-platform")
+    id("maven-publish")
+}
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+javaPlatform.allowDependencies()
+
+
+dependencies {
+    api platform("org.example:child-bom:1.0.0")
+}
+
+project.tasks.withType(GenerateModuleMetadata) {
+    enabled = false
+}
+
+publishing {
+    publications {
+        childbom(MavenPublication) {
+            artifactId = project.name
+            version = "1.0.0"
+            from components.javaPlatform
+        }
+    }
+}

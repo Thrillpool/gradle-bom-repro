@@ -1,0 +1,23 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+
+}
+
+plugins {
+    id("java")
+}
+
+    dependencies {
+        implementation platform("org.example:composite-bom:1.0.0")
+        implementation("com.fasterxml.jackson.core:jackson-databind")
+    }
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
